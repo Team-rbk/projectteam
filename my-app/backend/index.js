@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(cors())
 app.use('/',Route)
-const PORT = 3000;
+const PORT = 8080;
 
 app.listen(PORT, function () {
   console.log('listening on http://localhost:' + PORT);
