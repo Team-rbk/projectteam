@@ -27,10 +27,11 @@ CREATE TABLE IF NOT EXISTS `teamproject`.`client` (
   `emailc` VARCHAR(45) NULL DEFAULT NULL,
   `passwordc` VARCHAR(45) NULL DEFAULT NULL,
   `addressc` VARCHAR(45) NULL DEFAULT NULL,
-  `descriptionc` VARCHAR(45) NULL DEFAULT NULL,
-  `imagec` VARCHAR(45) NULL DEFAULT NULL,
+  `descriptionc` LONGTEXT NULL DEFAULT NULL,
+  `imagec` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`idclient`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -45,9 +46,10 @@ CREATE TABLE IF NOT EXISTS `teamproject`.`employer` (
   `passworde` VARCHAR(45) NULL DEFAULT NULL,
   `descriptione` LONGTEXT NULL DEFAULT NULL,
   `jobnamee` VARCHAR(45) NULL DEFAULT NULL,
-  `imagee` VARCHAR(45) NULL DEFAULT NULL,
+  `imagee` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`idemployer`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -56,9 +58,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teamproject`.`post` (
   `idpost` INT NOT NULL AUTO_INCREMENT,
-  `imagep` VARCHAR(45) NULL DEFAULT NULL,
+  `imagep` LONGTEXT NULL DEFAULT NULL,
   `statutp` LONGTEXT NULL DEFAULT NULL,
-  `titlep` VARCHAR(45) NULL,
+  `titlep` VARCHAR(45) NULL DEFAULT NULL,
   `client_idclient` INT NOT NULL,
   PRIMARY KEY (`idpost`),
   INDEX `fk_post_client_idx` (`client_idclient` ASC) VISIBLE,
@@ -66,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `teamproject`.`post` (
     FOREIGN KEY (`client_idclient`)
     REFERENCES `teamproject`.`client` (`idclient`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -95,7 +98,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teamproject`.`feedback` (
   `idfeedback` INT NOT NULL AUTO_INCREMENT,
-  `feedbackf` VARCHAR(45) NULL DEFAULT NULL,
+  `feedbackf` LONGTEXT NULL DEFAULT NULL,
   `client_idclient` INT NOT NULL,
   `employer_idemployer` INT NOT NULL,
   PRIMARY KEY (`idfeedback`),
