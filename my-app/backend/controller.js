@@ -78,5 +78,36 @@ const SignUpEmployer=  async (req,res)=>{
     catch(e){console.log(e);
   }
 }
+const getposts= async (req,res)=>{
+    const x= await db.getAllposts()
+  
+  try{
+      res.send(x[0])
+  }
+  catch(err){
+  console.log(err);
+  }
+  }
+const feedback=async (req,res)=>{
+    const x= await db.Getuserreview(req.params.id)
+  
+    try{
+        res.send(x[0])
+    }
+    catch(err){
+    console.log(err);
+    }
+    
+}
+const updatetheemployer= async (req,res)=>{
+    const x= await db.updateEmployer(req.body,req.params.id)
+  
+    try{
+        res.send(x[0])
+    }
+    catch(err){
+    console.log(err);
+    }
+}
 
-  module.exports={SignINEmployer,GetallUserE,SignINClient,GetallUserC,SignUpClient,SignUpEmployer}
+    module.exports={SignINEmployer,GetallUserE,SignINClient,GetallUserC,SignUpClient,SignUpEmployer , getposts ,updatetheemployer ,feedback  }
