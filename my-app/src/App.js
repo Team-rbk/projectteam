@@ -1,11 +1,10 @@
 import React  from "react"
-
-
+import Post from "./componant/interfaceclient/Post"
 const  App=()=>{
 
   return (
     <div>
-
+      <Post/>
     </div>
     
   )

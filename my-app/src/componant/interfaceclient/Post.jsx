@@ -3,10 +3,11 @@ import Nav from "./Nav";
 import axios from 'axios';
 
 const Post = () => {
-  const [image, setImage] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [user, setUser] = useState({});
+  const [image,setImage]= useState("");
+  const [title,setTitle]= useState('');
+  const [content,setContent]= useState('');
+  const [user,setUser] =useState({});
+  const [test,setTest]=useState({})
 
   useEffect(() => {
     axios.get(`http://localhost:8080/dashboardclient/1`)
@@ -18,23 +19,32 @@ const Post = () => {
       });
   }, []);
 
-  const handleSubmit = async () => {
+  const conf = async () => {
     const formData = new FormData();
     formData.append('file', image);
     formData.append('upload_preset', 'teamrbk');
-    const response = await axios.post('https://api.cloudinary.com/v1_1/dp9xsppna/upload', formData);
-    console.log(response.data.secure_url);
-    setImage(response.data.secure_url);
-    // const obj={
-    //   "imagep":image,
-    //   "statutp": content,
-    //   "titlep":title,
-    //   "client_idclient":"1"
-    // }
-    // const res=await axios.post('http://localhost:8080/postjob', obj);
-    // if(res){
-    //   console.log('added')
-    // }
+    await axios.post('https://api.cloudinary.com/v1_1/dp9xsppna/upload', formData).then((res)=>{
+      console.log(res);
+      setTest(res);
+    }).then(async()=>{
+
+      console.log(JSON.stringify(test.data.secure_url),'jjjj')
+      const obj={
+        "imagep":JSON.stringify(test.data.secure_url),
+        "statutp": content,
+        "titlep":title,
+        "client_idclient":"1"
+      }
+      const res=await axios.post('http://localhost:8080/postjob', obj);
+      if(res){
+        console.log('added')
+      }
+
+    }).catch((err)=>{
+      console.log(err)
+    })
+    
+    
   };
 
   return (
@@ -80,7 +90,7 @@ const Post = () => {
               </div>
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleSubmit}
+                onClick={conf}
               >
                 Save Post
               </button>

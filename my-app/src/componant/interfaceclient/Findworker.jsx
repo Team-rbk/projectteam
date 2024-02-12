@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Nav from "./Nav";
 import axios from "axios";
-const FindWorker = () => {
+const FindWorker=()=> {
   const [worker,setWorker]=useState([])
   useEffect(()=>{
     axios.get('http://localhost:8080/worker').then((res)=>{
@@ -16,7 +16,7 @@ const FindWorker = () => {
   const [search, setSearch] = useState("");
 
 console.log(worker)
-  const filteredWorkers = worker.filter(worker => {
+  const filtered = worker.filter(worker => {
     return worker.jobnamee.toLowerCase().includes(search.toLowerCase());
   });
     
@@ -35,7 +35,7 @@ console.log(worker)
           onChange={(e) => setSearch(e.target.value)}
         />
         <ul>
-          {filteredWorkers.map(worker => (
+          {filtered.map(worker => (
             <li key={worker.idemployer} className="mb-4">
               <div className="flex items-center">
                 <img src={worker.imagee} className="w-16 h-16 rounded-full mr-4" />
