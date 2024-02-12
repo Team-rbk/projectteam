@@ -4,5 +4,13 @@ Router.get('/profileclient/:id',Controller.getoclient)
 Router.get('/worker',Controller.getalworker)
 Router.get('/dashboardclient/:id',Controller.getoclient)
 Router.post('/postjob',Controller.postjobc)
+Router.post("/SignUpc",Controller.SignUpClient)
+Router.post("/SignInc",Controller.SignINClient)
+
+Router.get( "/GetUserc" ,Controller.GetallUserC)
+Router.get( "/GetUsere" ,Controller.GetallUserE);
+
+Router.post("/SignUpe",Controller.SignUpEmployer)
+Router.post("/SignIne",Controller.SignINEmployer)
 
 module.exports=Router
